@@ -1,6 +1,6 @@
 class Spieler():
     def __init__(self, Name):
-        self.Name = Name
+        self.name = Name
         self.Punktestand = 0
         self.gewonnene_Stiche = 0
         self.hand = []
@@ -18,7 +18,7 @@ class Spieler():
         return self.Punktestand >= 15
 
     def __str__(self):
-        return self.Name
+        return self.name
     
     def wählt_schlag(self):
         # Wählt Wert von dem er am meisten Karten auf der Hand hat aber als String
@@ -29,7 +29,7 @@ class Spieler():
             return self.hand[0].wert
         
     def wählt_farbe(self):
-        for farbe in ["Eichel", "Gras", "Herz", "Schelle"]:
+        for farbe in ["Eichel", "Laub", "Herz", "Schelle"]:
             if len([karte for karte in self.hand if karte.farbe == farbe]) >= 2:
                 return farbe
 
@@ -52,8 +52,12 @@ class Spieler():
     def um_schönere_bitten(self):
         return False
 
-    def ausschaffen(self):
-        pass
+    def ausschaffen(self, schlag, farbe, stiche_bisher):
+        # Es soll true ausgegeben werden, wenn Der Maxl auf der Hand ist
+        if any(karte.wert == "König" and karte.farbe == "Herz" for karte in self.hand):
+            return True
+        else:
+            return False
 
-    def mitgehen(self):
-        pass
+    def mitgehen(self, schlag, farbe, stiche_bisher):
+        return True
