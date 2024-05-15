@@ -94,7 +94,11 @@ class Watten_Zwei_Spieler():
         print(f'schlag: {self.schlag}, farbe: {self.farbe}')
         while True:
             # Ausschaffen
-            self.ausschaffen_abfragen()
+            Gewinner_durch_aufgabe = self.ausschaffen_abfragen()
+            if Gewinner_durch_aufgabe is not None:
+                pf = self.punkte_für_stich
+                self.hard_reset()
+                return Gewinner, self.punkte_für_stich
 
             # Stiche spielen
             self.stiche_ausspielen(self.schlag, self.farbe, erster_stich_spieler)
@@ -161,6 +165,13 @@ class Watten_Zwei_Spieler():
                 if geht_mit:
                     print(f'{Spieler.name} schafft aus und {self.Gegner(Spieler).name} geht mit')
                     self.punkte_für_stich += 1
+                else:
+                    print(f'{Spieler.name} schafft aus und {self.Gegner(Spieler).name} geht nicht mit')
+                    pf = self.punkte_für_stich
+                    self.hard_reset()
+                    return Spieler
+        else:
+            return None
         
     def stiche_ausspielen(self, schlag, farbe, erster_stich_spieler):
         # Trumpf oder kritisch?
