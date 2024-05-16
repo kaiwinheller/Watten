@@ -31,15 +31,14 @@ Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Re
     <li>Farbe passend</li>
     <li>In aufsteigender Reihenfolge: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" falls sowohl Trumpffarbe als auch Schlag nicht passt und die Karte nicht zu den drei Kritischen gehört.</li>
 </ol>
-- Der Nehmer beginnt, den ersten Stich zu spielen
-Sonderregel Trumpf oder Kritisch: Falls ein Spieler die Karte 4. auf der Hand hält (Trumpffarbe und Schlag passen), muss er diese in der ersten Runde ausspielen. Der andere Spieler darf hier nur mit einer Trumpfkarte (entweder Trumpffarbe oder Schlag) oder Kritischen Karte antworten. (falls er diese auf der Hand hält)
-- Gewinnt ein Spieler einen Stich, muss er den nächsten Stich initialisieren (die erste Karte legen).
-- Derjenige der drei Stiche in einer Runde gewonnen hat, gewinnt die Runde und erhält Punkte
-- Die Basispunktzahl, die ein Rundengewinner erhält sind 2 Punkte
-- Immer bevor beide Spieler eine Stichkarte ausspielen, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen)
-- Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung abzulehnen. Dies geht mit der Aufgabe der aktuellen Runde einher.
-- Das erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.
-
+<li>Der Nehmer beginnt, den ersten Stich zu spielen.</li>
+    <li>Sonderregel Trumpf oder Kritisch: Falls ein Spieler die Karte 4. auf der Hand hält (Trumpffarbe und Schlag passen), muss er diese in der ersten Runde ausspielen. Der andere Spieler darf hier nur mit einer Trumpfkarte (entweder Trumpffarbe oder Schlag) oder Kritischen Karte antworten. (falls er diese auf der Hand hält)</li>
+    <li>Gewinnt ein Spieler einen Stich, muss er den nächsten Stich initialisieren (die erste Karte legen).</li>
+    <li>Derjenige der drei Stiche in einer Runde gewonnen hat, gewinnt die Runde und erhält Punkte.</li>
+    <li>Die Basispunktzahl, die ein Rundengewinner erhält, sind 2 Punkte.</li>
+    <li>Immer bevor beide Spieler eine Stichkarte ausspielen, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen).</li>
+    <li>Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung abzulehnen. Dies geht mit der Aufgabe der aktuellen Runde einher.</li>
+    <li>Das erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.</li>
 
 <h2>Watten.py</h2>
 
