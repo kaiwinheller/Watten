@@ -40,6 +40,7 @@ Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Re
     <li>Immer bevor beide Spieler eine Stichkarte ausspielen, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen).</li>
     <li>Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung abzulehnen. Dies geht mit der Aufgabe der aktuellen Runde einher.</li>
     <li>Das erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.</li>
+    <li>Der Geber beginnt in jeder Runde damit, den Einsatz zu erhöhen, gefolgt vom Nehmer dieser Runde.</li>
 </ul>
 <h2>Watten.py</h2>
 
