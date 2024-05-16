@@ -2,6 +2,39 @@
 
 Dieses GitHub-Repository beinhaltet alle zum Beschreiten des Endprojektes benötigten Dateien.
 
+<h2>Regeln</h2>
+
+Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Regeln und Spielabläufe definiert, die für das Endprojekt gelten.
+- Es wird 1 gegen 1 gespielt
+- Es gewinnt, welcher Spieler als erstes insgesamt mindestens 15 Punkte erreicht hat
+- Punkte können gewonnen werden, indem Hände gewonnen werden
+- Jede gewonnene Hand gibt mindestens 2 Punkte
+Ablauf:
+- Der Nehmer darf eine zufällige Karte des Kartendecks überprüfen und sie auf die Hand nehmen, falls es eine kritische Karte ist. (Er kann auch Schummeln und die Karte trotzdem auf die Hand nehmen. Fällt dies auf, verliert der Spieler die Runde mit 2 Punkten)
+- Zu beginn einer Runde werden jedem Spieler 5 Karten vom Geber ausgeteilt. (Der erste Geber wird zufällig bestimmt, nachdem ein Spiel initialisiert wird)
+- Nachdem die Karten ausgeteilt wurden, darf jeder Spieler fragen, ob neue Karten für alle Spieler ausgeteilt werden. Sind alle Spieler einverstanden werden einmalig neue Karten ausgeteilt. Ist auch nur ein Spieler nicht einverstanden, bleiben die Hände so, wie sie sind.
+- Der Nehmer darf nun den Schlag bestimmen. Der Schlag ist eine der folgenden Werte: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" (so wird das Ass bezeichnet).
+- Der Geber darf nun die Trumpffarbe bestimmen. Diese ist entweder "Laub", "Herz", "Schelle" oder "Eichel".
+- Nun sind die Werte aller Karten dieser Runde festgelegt und die Spieler beginnen zu stechen. Hier ist die Güte der Karten in einer Liste aufgezeigt.
+<ol>
+    <li>Herz König (Maxl)</li>
+    <li>Schelle 7 (Welli)</li>
+    <li>Eichel 7 (Spitz)</li>
+    <li>Schlag und Trumpffarbe passend</li>
+    <li>Schlag passend</li>
+    <li>Farbe passend</li>
+    <li>In aufsteigender Reihenfolge: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" falls sowohl Trumpffarbe als auch Schlag nicht passt und die Karte nicht zu den drei Kritischen gehört.</li>
+</ol>
+- Der Nehmer beginnt, den ersten Stich zu spielen
+Sonderregel Trumpf oder Kritisch: Falls ein Spieler die Karte 4. auf der Hand hält (Trumpffarbe und Schlag passen), muss er diese in der ersten Runde ausspielen. Der andere Spieler darf hier nur mit einer Trumpfkarte (entweder Trumpffarbe oder Schlag) oder Kritischen Karte antworten. (falls er diese auf der Hand hält)
+- Gewinnt ein Spieler einen Stich, muss er den nächsten Stich initialisieren (die erste Karte legen).
+- Derjenige der drei Stiche in einer Runde gewonnen hat, gewinnt die Runde und erhält Punkte
+- Die Basispunktzahl, die ein Rundengewinner erhält sind 2 Punkte
+- Immer bevor beide Spieler eine Stichkarte ausspielen, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen)
+- Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung abzulehnen. Dies geht mit der Aufgabe der aktuellen Runde einher.
+- Das erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.
+
+
 <h2>Watten.py</h2>
 
 In der Datei befindet sich der Spiel-Loop. Der Spiel-Loop ist eine Schleife, die so lange läuft, bis ein Gewinner ermittelt wurde.
