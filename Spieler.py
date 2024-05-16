@@ -4,6 +4,7 @@ class Spieler():
         self.Punktestand = 0
         self.gewonnene_Stiche = 0
         self.hand = []
+        self.darf_ausschaffen = True
 
     def karten_wegschmeißen(self):
         self.hand = []
@@ -61,3 +62,28 @@ class Spieler():
 
     def mitgehen(self, schlag, farbe, stiche_bisher):
         return True
+
+class Dein_Spieler(Spieler):
+    def __init__(self, Name):
+        super().__init__(Name)
+
+    def wählt_schlag(self):
+        pass
+
+    def wählt_farbe(self):
+        pass
+
+    def spielt_karte(self, schlag, farbe, stiche_bisher, stich = None, trumpf_oder_kritisch = False):
+        pass
+
+    def nimmt_karte_beim_abheben(self, karte):
+        pass
+
+    def um_schönere_bitten(self):
+        pass
+
+    def ausschaffen(self, schlag, farbe, stiche_bisher):
+        pass
+
+    def mitgehen(self, schlag, farbe, stiche_bisher):
+        pass

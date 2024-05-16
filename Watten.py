@@ -158,18 +158,36 @@ class Watten_Zwei_Spieler():
             return 0
 
     def ausschaffen_abfragen(self):
-        for Spieler in self.Spielerliste:
-            schafft_aus = Spieler.ausschaffen(self.schlag, self.farbe, self.stiche_bisher)
+        Geber = self.Spielerliste[self.Geber]
+        if Geber.darf_ausschaffen:
+            schafft_aus = Geber.ausschaffen(self.schlag, self.farbe, self.stiche_bisher)
             if schafft_aus:
-                geht_mit = self.Gegner(Spieler).mitgehen(self.schlag, self.farbe, self.stiche_bisher)
+                geht_mit = self.Gegner(Geber).mitgehen(self.schlag, self.farbe, self.stiche_bisher)
                 if geht_mit:
-                    print(f'{Spieler.name} schafft aus und {self.Gegner(Spieler).name} geht mit')
+                    print(f'{Geber.name} schafft aus und {self.Gegner(Geber).name} geht mit')
+                    Geber.darf_ausschaffen = False
+                    self.Gegner(Geber).darf_ausschaffen = True
                     self.punkte_für_stich += 1
                 else:
-                    print(f'{Spieler.name} schafft aus und {self.Gegner(Spieler).name} geht nicht mit')
+                    print(f'{Geber.name} schafft aus und {self.Gegner(Geber).name} geht nicht mit')
                     pf = self.punkte_für_stich
                     self.hard_reset()
                     return Spieler
+        Nehmer = self.Spielerliste[self.Geber ^ 1]
+        if Nehmer.darf_ausschaffen:
+            schafft_aus = Nehmer.ausschaffen(self.schlag, self.farbe, self.stiche_bisher)
+            if schafft_aus:
+                geht_mit = self.Gegner(Nehmer).mitgehen(self.schlag, self.farbe, self.stiche_bisher)
+                if geht_mit:
+                    print(f'{Nehmer.name} schafft aus und {self.Gegner(Nehmer).name} geht mit')
+                    Nehmer.darf_ausschaffen = False
+                    self.Gegner(Nehmer).darf_ausschaffen = True
+                    self.punkte_für_stich += 1
+                else:
+                    print(f'{Nehmer.name} schafft aus und {self.Gegner(Nehmer).name} geht nicht mit')
+                    pf = self.punkte_für_stich
+                    self.hard_reset()
+                    return Nehmer
         else:
             return None
         
@@ -194,6 +212,7 @@ class Watten_Zwei_Spieler():
         for Spieler in self.Spielerliste:
             Spieler.karten_wegschmeißen()
             Spieler.gewonnene_Stiche = 0
+            Spieler.darf_ausschaffen = True
         self.Deck.reset()
         self.Deck.an_spieler_austeilen(self.Spielerliste)
         self.schlag = None
