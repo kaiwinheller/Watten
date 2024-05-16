@@ -5,17 +5,23 @@ Dieses GitHub-Repository beinhaltet alle zum Beschreiten des Endprojektes benöt
 <h2>Regeln</h2>
 
 Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Regeln und Spielabläufe definiert, die für das Endprojekt gelten.
-- Es wird 1 gegen 1 gespielt
-- Es gewinnt, welcher Spieler als erstes insgesamt mindestens 15 Punkte erreicht hat
-- Punkte können gewonnen werden, indem Hände gewonnen werden
-- Jede gewonnene Hand gibt mindestens 2 Punkte
-Ablauf:
-- Der Nehmer darf eine zufällige Karte des Kartendecks überprüfen und sie auf die Hand nehmen, falls es eine kritische Karte ist. (Er kann auch Schummeln und die Karte trotzdem auf die Hand nehmen. Fällt dies auf, verliert der Spieler die Runde mit 2 Punkten)
-- Zu beginn einer Runde werden jedem Spieler 5 Karten vom Geber ausgeteilt. (Der erste Geber wird zufällig bestimmt, nachdem ein Spiel initialisiert wird)
-- Nachdem die Karten ausgeteilt wurden, darf jeder Spieler fragen, ob neue Karten für alle Spieler ausgeteilt werden. Sind alle Spieler einverstanden werden einmalig neue Karten ausgeteilt. Ist auch nur ein Spieler nicht einverstanden, bleiben die Hände so, wie sie sind.
-- Der Nehmer darf nun den Schlag bestimmen. Der Schlag ist eine der folgenden Werte: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" (so wird das Ass bezeichnet).
-- Der Geber darf nun die Trumpffarbe bestimmen. Diese ist entweder "Laub", "Herz", "Schelle" oder "Eichel".
-- Nun sind die Werte aller Karten dieser Runde festgelegt und die Spieler beginnen zu stechen. Hier ist die Güte der Karten in einer Liste aufgezeigt.
+<ul>
+    <li>Es wird 1 gegen 1 gespielt</li>
+    <li>Es gewinnt, wer als erstes insgesamt mindestens 15 Punkte erreicht hat</li>
+    <li>Punkte können gewonnen werden, indem Hände gewonnen werden</li>
+    <li>Jede gewonnene Hand gibt mindestens 2 Punkte</li>
+</ul>
+
+<h2>Ablauf:</h2>
+
+<ul>
+    <li>Der Nehmer darf eine zufällige Karte des Kartendecks überprüfen und sie auf die Hand nehmen, falls es eine kritische Karte ist. (Er kann auch Schummeln und die Karte trotzdem auf die Hand nehmen. Fällt dies auf, verliert der Spieler die Runde mit 2 Punkten)</li>
+    <li>Zu Beginn einer Runde werden jedem Spieler 5 Karten vom Geber ausgeteilt. (Der erste Geber wird zufällig bestimmt, nachdem ein Spiel initialisiert wird)</li>
+    <li>Nachdem die Karten ausgeteilt wurden, darf jeder Spieler fragen, ob neue Karten für alle Spieler ausgeteilt werden. Sind alle Spieler einverstanden, werden einmalig neue Karten ausgeteilt. Ist auch nur ein Spieler nicht einverstanden, bleiben die Hände so, wie sie sind.</li>
+    <li>Der Nehmer darf nun den Schlag bestimmen. Der Schlag ist eine der folgenden Werte: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" (so wird das Ass bezeichnet).</li>
+    <li>Der Geber darf nun die Trumpffarbe bestimmen. Diese ist entweder "Laub", "Herz", "Schelle" oder "Eichel".</li>
+    <li>Nun sind die Werte aller Karten dieser Runde festgelegt und die Spieler beginnen zu stechen. Hier ist die Güte der Karten in einer Liste aufgezeigt.</li>
+</ul>
 <ol>
     <li>Herz König (Maxl)</li>
     <li>Schelle 7 (Welli)</li>
