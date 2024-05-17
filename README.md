@@ -17,9 +17,9 @@ Da kein klares Regelwerk für das Spiel existiert, werden hier alle relevanten R
 <ul>
     <li>Der Nehmer darf eine zufällige Karte des Kartendecks überprüfen und sie auf die Hand nehmen, falls es eine kritische Karte ist. (Er kann auch Schummeln und die Karte trotzdem auf die Hand nehmen. Fällt dies im Laufe des Spiels (auch z. B. am Ende) auf, verliert der Spieler die Runde mit 2 Punkten)</li>
     <li>Zu Beginn einer Runde werden jedem Spieler 3 + 2 Karten vom Geber ausgeteilt. (Der erste Geber wird zufällig bestimmt, nachdem ein Spiel initialisiert wird)</li>
-    <li>Nachdem die Karten ausgeteilt wurden, darf jeder Spieler fragen, ob neue Karten für alle Spieler ausgeteilt werden. Sind alle Spieler einverstanden, werden einmalig neue Karten ausgeteilt. Ist auch nur ein Spieler nicht einverstanden, bleiben die Hände so, wie sie sind.</li>
     <li>Der Nehmer darf nun den Schlag bestimmen. Der Schlag ist eine der folgenden Werte: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" (so wird das Ass bezeichnet).</li>
     <li>Der Geber darf nun die Trumpffarbe bestimmen. Diese ist entweder "Gras", "Herz", "Schelle" oder "Eichel".</li>
+    <li>Nachdem Schlag und Trumpffarbe angesagt wurden, darf jeder Spieler fragen, ob neue Karten für alle Spieler ausgeteilt werden. Sind alle Spieler einverstanden, werden einmalig neue Karten ausgeteilt. Ist auch nur ein Spieler nicht einverstanden, bleiben alle Hände so, wie sie sind.</li>
     <li>Nun sind die Werte aller Karten dieser Runde festgelegt und die Spieler beginnen zu stechen. Hier ist die Güte der Karten in einer Liste aufgezeigt.</li>
 </ul>
 <ol>
@@ -38,9 +38,12 @@ Da kein klares Regelwerk für das Spiel existiert, werden hier alle relevanten R
     <li>Derjenige der drei Stiche in einer Runde gewonnen hat, gewinnt die Runde und erhält Punkte.</li>
     <li>Die Basispunktzahl, die ein Rundengewinner erhält, sind 2 Punkte.</li>
     <li>Immer bevor die erste Karte eines Stichs ausgespielt wurde, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen, eingeleitet durch die Frage "Gehst?").</li>
-    <li>Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung anzunehmen (durch die Antwort "Na!"). Dies geht mit der Aufgabe der aktuellen Runde einher.</li>
-    <li>Das erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.</li>
-    <li>Der Geber beginnt in jeder Runde damit, den Einsatz zu erhöhen, gefolgt vom Nehmer dieser Runde.</li>
+    <li>Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung anzunehmen (durch die Antwort "Na!"). Andernfalls geht die Runde für ihn verloren.</li>
+    <li>Das Erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.</li>
+    <li>Der Geber hat in jeder Runde zuerst das Recht, den Einsatz zu erhöhen.</li>
+    <li>Gespannt sein: Falls ein Spieler mindestens 13 Punkte hat gilt er als gespannt. Wenn ein Spieler gespannt ist, darf er nicht mehr ausschaffen. Macht er dies versehentlich doch, verliert er die Runde automatisch.</li>
+    <li>Ist ein Spieler gespannt, kann auch der andere Spieler nicht ausschaffen. Macht er dies versehentlich, wird dies ignoriert.</li>
+    <li>Ist ein Spieler gespannt, wird jedes Spiel mit drei Punkten bewertet. Es sei denn, der gespannte Spieler schafft aus, dann erhält der Gegner des gespannten Spielers nur 2 Punkte.</li>
 </ul>
 <h2>Watten.py</h2>
 
@@ -51,7 +54,7 @@ In der Funktion befinden sich zudem Hilfsfunktionen, die den Ablauf des Spiels b
 
 Diese beiden Dateien enthalten eine Deck und eine Karte Klasse.
 Das Deck enthält eine Liste mit Karten, die in dem Deck (in einer bestimmten Reihenfolge) vorkommen.
-Eine Karte enthält Informationen über den Wert (Zahl oder Bild) und die Farbe (Herz, Eichel, Schelle oder Laub).
+Eine Karte enthält Informationen über den Wert (Zahl oder Bild) und die Farbe (Herz, Eichel, Schelle oder Gras).
 
 <h2>Spieler.py</h2>
 
@@ -65,3 +68,4 @@ Eine Ihrer Aufgaben ist es, eine Unterklasse dieser Spieler-Klasse zu erstellen,
 - um_schönere_bitten: diese Methode sieht die eigene Hand und gibt einen Boolschen Wert zurück. Bei True, bittest du um neue Karten.
 - ausschaffen: Die Funktione erhält Farbe, Schlag und die Stiche bisher und gibt True zurück, wenn du den Einsatz um einen Punkt erhöhen willst.
 - mitgehen: Falls der Gegner ausgeschaffen hat, kann hiermit entschieden werden, ob der erhöhte Einsatz akzeptiert wird (True) oder nicht (False). Falls abgelehnt wird, kriegt der Gegner den aktuellen Einsatz als Punkte und die nächste Runde beginnt.
+- bluff_anzeigen: Falls alle Karten ausgespielt wurden kann ein bluff angezeigt werden. Dabei wird dem Nehmer vom Geber vorgeworfen, beim Abheben keine kritische Karte gewählt zu haben. Liegt der Kläger mit der Anzeige richtig, gewinnt er die Runde mit zwei Punkten. Liegt er falsch, gewinnt der Nehmer die Runde mit der Punktzahl der Runde plus einen Extrapunkt.
