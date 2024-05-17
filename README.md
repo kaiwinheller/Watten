@@ -15,30 +15,30 @@ Da kein klares Regelwerk für das Spiel existiert, werden hier alle relevanten R
 <h2>Ablauf:</h2>
 
 <ul>
-    <li>Der Nehmer darf eine zufällige Karte des Kartendecks überprüfen und sie auf die Hand nehmen, falls es eine kritische Karte ist. (Er kann auch Schummeln und die Karte trotzdem auf die Hand nehmen. Fällt dies auf, verliert der Spieler die Runde mit 2 Punkten)</li>
-    <li>Zu Beginn einer Runde werden jedem Spieler 5 Karten vom Geber ausgeteilt. (Der erste Geber wird zufällig bestimmt, nachdem ein Spiel initialisiert wird)</li>
+    <li>Der Nehmer darf eine zufällige Karte des Kartendecks überprüfen und sie auf die Hand nehmen, falls es eine kritische Karte ist. (Er kann auch Schummeln und die Karte trotzdem auf die Hand nehmen. Fällt dies im Laufe des Spiels (auch z. B. am Ende) auf, verliert der Spieler die Runde mit 2 Punkten)</li>
+    <li>Zu Beginn einer Runde werden jedem Spieler 3 + 2 Karten vom Geber ausgeteilt. (Der erste Geber wird zufällig bestimmt, nachdem ein Spiel initialisiert wird)</li>
     <li>Nachdem die Karten ausgeteilt wurden, darf jeder Spieler fragen, ob neue Karten für alle Spieler ausgeteilt werden. Sind alle Spieler einverstanden, werden einmalig neue Karten ausgeteilt. Ist auch nur ein Spieler nicht einverstanden, bleiben die Hände so, wie sie sind.</li>
     <li>Der Nehmer darf nun den Schlag bestimmen. Der Schlag ist eine der folgenden Werte: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" (so wird das Ass bezeichnet).</li>
-    <li>Der Geber darf nun die Trumpffarbe bestimmen. Diese ist entweder "Laub", "Herz", "Schelle" oder "Eichel".</li>
+    <li>Der Geber darf nun die Trumpffarbe bestimmen. Diese ist entweder "Gras", "Herz", "Schelle" oder "Eichel".</li>
     <li>Nun sind die Werte aller Karten dieser Runde festgelegt und die Spieler beginnen zu stechen. Hier ist die Güte der Karten in einer Liste aufgezeigt.</li>
 </ul>
 <ol>
     <li>Herz König (Maxl)</li>
-    <li>Schelle 7 (Welli)</li>
-    <li>Eichel 7 (Spitz)</li>
-    <li>Schlag und Trumpffarbe passend</li>
+    <li>Schelle 7 (Belli)</li>
+    <li>Eichel 7 (Soacher)</li>
+    <li>Schlag und Trumpffarbe passend (Haube)</li>
     <li>Schlag passend</li>
-    <li>Farbe passend</li>
-    <li>In aufsteigender Reihenfolge: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" falls sowohl Trumpffarbe als auch Schlag nicht passt und die Karte nicht zu den drei Kritischen gehört.</li>
+    <li>Trumpffarbe passend (Werte in absteigender Reihenfolge: "Sau", "König", "Ober", "Unter", "10", "9", "8", "7")</li>
+    <li>Weder Trumpffarbe noch Schlag stimmt überein (Werte in absteigender Reihenfolge: "Sau", "König", "Ober", "Unter", "10", "9", "8", "7"). Die erstgespielte Karte kann nur von der gleichen Farbe oder von einer Karte einer höheren Kategorie geschlagen werden.</li>
 </ol>
 <ul>
     <li>Der Nehmer beginnt, den ersten Stich zu spielen.</li>
-    <li>Sonderregel Trumpf oder Kritisch: Falls ein Spieler die Karte 4. auf der Hand hält (Trumpffarbe und Schlag passen), muss er diese in der ersten Runde ausspielen. Der andere Spieler darf hier nur mit einer Trumpfkarte (entweder Trumpffarbe oder Schlag) oder Kritischen Karte antworten. (falls er diese auf der Hand hält)</li>
+    <li>Sonderregel Trumpf oder Kritisch: Falls ein Spieler den Haube auf der Hand hält (Trumpffarbe und Schlag passen), muss er diesen in der ersten Runde ausspielen. Der andere Spieler darf hier nur mit einer Trumpfkarte (entweder Trumpffarbe oder Schlag) oder einer kritischen Karte antworten. (falls er diese auf der Hand hält)</li>
     <li>Gewinnt ein Spieler einen Stich, muss er den nächsten Stich initialisieren (die erste Karte legen).</li>
     <li>Derjenige der drei Stiche in einer Runde gewonnen hat, gewinnt die Runde und erhält Punkte.</li>
     <li>Die Basispunktzahl, die ein Rundengewinner erhält, sind 2 Punkte.</li>
-    <li>Immer bevor beide Spieler eine Stichkarte ausspielen, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen).</li>
-    <li>Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung abzulehnen. Dies geht mit der Aufgabe der aktuellen Runde einher.</li>
+    <li>Immer bevor die erste Karte eines Stichs ausgespielt wurde, darf jeder Spieler den Einsatz um einen Punkt erhöhen (Ausschaffen, eingeleitet durch die Frage "Gehst?").</li>
+    <li>Nachdem von einem Spieler der Einsatz erhöht wurde, hat der andere Spieler das Recht, die Erhöhung anzunehmen (durch die Antwort "Na!"). Dies geht mit der Aufgabe der aktuellen Runde einher.</li>
     <li>Das erhöhen funktioniert jedoch nur abwechselnd. Ein Spieler darf also nicht zweimal in einer Runde erhöhen, falls nicht zwischenzeitlich auch der andere Spieler einmal erhöht hat.</li>
     <li>Der Geber beginnt in jeder Runde damit, den Einsatz zu erhöhen, gefolgt vom Nehmer dieser Runde.</li>
 </ul>
