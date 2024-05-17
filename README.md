@@ -24,8 +24,8 @@ Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Re
 </ul>
 <ol>
     <li>Herz König (Maxl)</li>
-    <li>Schelle 7 (Welli)</li>
-    <li>Eichel 7 (Spitz)</li>
+    <li>Schelle 7 (belli)</li>
+    <li>Eichel 7 (soacher)</li>
     <li>Schlag und Trumpffarbe passend</li>
     <li>Schlag passend</li>
     <li>Farbe passend</li>

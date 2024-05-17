@@ -5,6 +5,8 @@ class Spieler():
         self.gewonnene_Stiche = 0
         self.hand = []
         self.darf_ausschaffen = True
+        self.ist_gespannt = False
+        self.hat_beim_abheben_geflunkert = False
 
     def karten_wegschmeißen(self):
         self.hand = []
@@ -21,7 +23,7 @@ class Spieler():
     def __str__(self):
         return self.name
     
-    def wählt_schlag(self):
+    def wählt_schlag(self, nehmer_hat_karte_beim_abheben_genommen):
         # Wählt Wert von dem er am meisten Karten auf der Hand hat aber als String
         for wert in ["7", "8", "9", "10", "U", "O", "K", "S"]:
             if len([karte for karte in self.hand if karte.wert == wert]) >= 2:
@@ -29,12 +31,12 @@ class Spieler():
         else:
             return self.hand[0].wert
         
-    def wählt_farbe(self):
+    def wählt_farbe(self, nehmer_hat_karte_beim_abheben_genommen):
         for farbe in ["Eichel", "Laub", "Herz", "Schelle"]:
             if len([karte for karte in self.hand if karte.farbe == farbe]) >= 2:
                 return farbe
 
-    def spielt_karte(self, schlag, farbe, stiche_bisher, stich = None, trumpf_oder_kritisch = False):
+    def spielt_karte(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict, stich = None, trumpf_oder_kritisch = False):
         if trumpf_oder_kritisch == False:
             return self.hand.pop()
         else:
@@ -50,40 +52,46 @@ class Spieler():
         else:
             return False
 
-    def um_schönere_bitten(self):
+    def um_schönere_bitten(self, nehmer_hat_karte_beim_abheben_genommen):
         return False
 
-    def ausschaffen(self, schlag, farbe, stiche_bisher):
+    def ausschaffen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
         # Es soll true ausgegeben werden, wenn Der Maxl auf der Hand ist
         if any(karte.wert == "König" and karte.farbe == "Herz" for karte in self.hand):
             return True
         else:
             return False
 
-    def mitgehen(self, schlag, farbe, stiche_bisher):
+    def mitgehen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
         return True
+
+    def bluff_anzeigen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
+        return False
 
 class Dein_Spieler(Spieler):
     def __init__(self, Name):
         super().__init__(Name)
-
-    def wählt_schlag(self):
+    #
+    def wählt_schlag(self, nehmer_hat_karte_beim_abheben_genommen): 
         pass
-
-    def wählt_farbe(self):
+    #
+    def wählt_farbe(self, nehmer_hat_karte_beim_abheben_genommen):
         pass
-
-    def spielt_karte(self, schlag, farbe, stiche_bisher, stich = None, trumpf_oder_kritisch = False):
+    #
+    def spielt_karte(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict, stich = None, trumpf_oder_kritisch = False):
         pass
-
+    #
     def nimmt_karte_beim_abheben(self, karte):
         pass
-
-    def um_schönere_bitten(self):
+    #
+    def um_schönere_bitten(self, nehmer_hat_karte_beim_abheben_genommen):
         pass
-
-    def ausschaffen(self, schlag, farbe, stiche_bisher):
+    #
+    def ausschaffen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
         pass
-
-    def mitgehen(self, schlag, farbe, stiche_bisher):
+    #
+    def mitgehen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
+        pass
+    #
+    def bluff_anzeigen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
         pass

@@ -11,8 +11,8 @@ Unsere Regeln des Spiels für Watten sind:
 
 Die Stichreihenfolge ist:
 - Herz König (Maxl)
-- Schellen 7 (Weli)
-- Eichel 7 (Spitz)
+- Schellen 7 (Belli)
+- Eichel 7 (soacher)
 - Hauptschlag (gewählter Schlag der gewählten Farbe)
 - Schlag (gewählter Schlag der nicht gewählten Farbe entrspricht)
 - Trumpf (gewählte Farbe nach der Reihenfolge des Kartenrangs)
@@ -22,7 +22,7 @@ Die Stichreihenfolge ist:
 5. Gewinnt ein Spieler drei Stiche in einer Runde gewinnt er die Runde und erhält Punkte
 - Falls kein Spieler setzt, erhält der Gewinner der Runde 2 Punkte
 - Zwischen den Runden darf jeder Spieler den Einsatz erhöhen
-- Es gibt 3 Stiche (Herz König (Maxl), Schellen 7 (Weli), Eichel 7 (Spitz))
+- Es gibt 3 Stiche (Herz König (Maxl), Schellen 7 (Belli), Eichel 7 (soacher))
 - Der Spieler, der den Stich gewinnt, erhält 2 Punkte
 -  
 '''
@@ -40,6 +40,8 @@ class Watten_Zwei_Spieler():
         self.farbe = None
         self.punkte_für_stich = 2
         self.Deck = Watten_Deck()
+        self.spieler_ausschaffen_dict = {Spieler: [] for Spieler in self.Spielerliste}
+        self.erste_karte_wurde_abgehoben = False
 
     # Spiel-Loop
 
@@ -56,6 +58,8 @@ class Watten_Zwei_Spieler():
             rundengewinner.erhält_punkte(punkte)
             Runde += 1
             print(f'Rundengewinner: {rundengewinner} erhält {punkte} Punkte\n\n')
+            if rundengewinner.Punktestand >= 13:
+                rundengewinner.ist_gespannt = True
 
             # Geber wechselt
             self.Geber ^= 1
@@ -71,6 +75,9 @@ class Watten_Zwei_Spieler():
         abgehobene_karte = self.Deck.abheben()
         if self.Spielerliste[self.Geber ^ 1].nimmt_karte_beim_abheben(abgehobene_karte):
             self.Spielerliste[self.Geber ^ 1].hand.append(abgehobene_karte)
+            self.erste_karte_wurde_abgehoben = True
+            if not self.ist_maxl(abgehobene_karte) and not self.ist_belli(abgehobene_karte) and not self.ist_soacher(abgehobene_karte):
+                self.Spielerliste[self.Geber ^ 1].hat_beim_abheben_geflunkert = True
         else:
             self.Deck.karte_nach_unten_legen(abgehobene_karte)
 
@@ -81,24 +88,24 @@ class Watten_Zwei_Spieler():
         for Spieler in self.Spielerliste:
             if self.check_for_maschine(Spieler):
                 self.hard_reset()
-                return Spieler, 2
-            
-        # Um schönere bitten
-        if all(Spieler.um_schönere_bitten() for Spieler in self.Spielerliste):
-            self.hard_reset()
+                return Spieler, 3
 
         # Schlag und Farbe wählen
-        self.schlag = self.Spielerliste[self.Geber ^ 1].wählt_schlag()
-        self.farbe = self.Spielerliste[self.Geber].wählt_farbe()
+        self.schlag = self.Spielerliste[self.Geber ^ 1].wählt_schlag(self.erste_karte_wurde_abgehoben)
+        self.farbe = self.Spielerliste[self.Geber].wählt_farbe(self.erste_karte_wurde_abgehoben)
         erster_stich_spieler = self.Spielerliste[self.Geber ^ 1]
         print(f'schlag: {self.schlag}, farbe: {self.farbe}')
+
+        # Um schönere bitten
+        if all(Spieler.um_schönere_bitten(self.erste_karte_wurde_abgehoben) for Spieler in self.Spielerliste):
+            self.hard_reset()
+
         while True:
             # Ausschaffen
-            Gewinner_durch_aufgabe = self.ausschaffen_abfragen()
-            if Gewinner_durch_aufgabe is not None:
-                pf = self.punkte_für_stich
+            Gewinner_durch_aufgabe, Punkte = self.ausschaffen_abfragen()
+            if Gewinner_durch_aufgabe != 0:
                 self.hard_reset()
-                return Gewinner, self.punkte_für_stich
+                return Gewinner_durch_aufgabe, Punkte
 
             # Stiche spielen
             self.stiche_ausspielen(self.schlag, self.farbe, erster_stich_spieler)
@@ -112,6 +119,12 @@ class Watten_Zwei_Spieler():
 
             # Runde gewonnen?
             if Gewinner.gewonnene_Stiche == 3:
+                hat_angezeigt = self.Gegner(Gewinner).bluff_anzeigen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
+                if hat_angezeigt:
+                    if Gewinner.hat_beim_abheben_geflunkert:
+                        return self.Gegner(Gewinner), 2
+                    else:
+                        return Gewinner, self.punkte_für_stich + 1
                 pf = self.punkte_für_stich
                 self.hard_reset()
                 return Gewinner, pf
@@ -127,13 +140,13 @@ class Watten_Zwei_Spieler():
         else:
             return 0
         
-    def ist_welli(self, karte):
+    def ist_belli(self, karte):
         if karte.wert == '7' and karte.farbe == 'Schelle':
             return 500
         else:
             return 0
         
-    def ist_spitz(self, karte):
+    def ist_soacher(self, karte):
         if karte.wert == '7' and karte.farbe == 'Eichel':
             return 200
         else:
@@ -159,11 +172,15 @@ class Watten_Zwei_Spieler():
 
     def ausschaffen_abfragen(self):
         Geber = self.Spielerliste[self.Geber]
+        Nehmer = self.Spielerliste[self.Geber ^ 1]
         if Geber.darf_ausschaffen:
-            schafft_aus = Geber.ausschaffen(self.schlag, self.farbe, self.stiche_bisher)
+            schafft_aus = Geber.ausschaffen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
             if schafft_aus:
-                geht_mit = self.Gegner(Geber).mitgehen(self.schlag, self.farbe, self.stiche_bisher)
-                if geht_mit:
+                if Geber.ist_gespannt:
+                    return Nehmer, 2
+                elif Nehmer.ist_gespannt:
+                    pass
+                elif self.Gegner(Geber).mitgehen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict):
                     print(f'{Geber.name} schafft aus und {self.Gegner(Geber).name} geht mit')
                     Geber.darf_ausschaffen = False
                     self.Gegner(Geber).darf_ausschaffen = True
@@ -172,13 +189,15 @@ class Watten_Zwei_Spieler():
                     print(f'{Geber.name} schafft aus und {self.Gegner(Geber).name} geht nicht mit')
                     pf = self.punkte_für_stich
                     self.hard_reset()
-                    return Spieler
-        Nehmer = self.Spielerliste[self.Geber ^ 1]
+                    return Spieler, self.punkte_für_stich
         if Nehmer.darf_ausschaffen:
-            schafft_aus = Nehmer.ausschaffen(self.schlag, self.farbe, self.stiche_bisher)
+            schafft_aus = Nehmer.ausschaffen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
             if schafft_aus:
-                geht_mit = self.Gegner(Nehmer).mitgehen(self.schlag, self.farbe, self.stiche_bisher)
-                if geht_mit:
+                if Nehmer.ist_gespannt:
+                    return Geber, 2
+                elif Geber.ist_gespannt:
+                    pass
+                elif self.Gegner(Nehmer).mitgehen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict):
                     print(f'{Nehmer.name} schafft aus und {self.Gegner(Nehmer).name} geht mit')
                     Nehmer.darf_ausschaffen = False
                     self.Gegner(Nehmer).darf_ausschaffen = True
@@ -187,9 +206,8 @@ class Watten_Zwei_Spieler():
                     print(f'{Nehmer.name} schafft aus und {self.Gegner(Nehmer).name} geht nicht mit')
                     pf = self.punkte_für_stich
                     self.hard_reset()
-                    return Nehmer
-        else:
-            return None
+                    return Nehmer, self.punkte_für_stich
+        return 0, 0
         
     def stiche_ausspielen(self, schlag, farbe, erster_stich_spieler):
         # Trumpf oder kritisch?
@@ -198,12 +216,12 @@ class Watten_Zwei_Spieler():
                 if c.wert == schlag and c.farbe == farbe:
                     Spieler.stich = c
                     Spieler.hand.remove(c)
-                    self.Gegner(Spieler).stich = self.Gegner(Spieler).spielt_karte(schlag, farbe, self.stiche_bisher, c, True)
+                    self.Gegner(Spieler).stich = self.Gegner(Spieler).spielt_karte(schlag, farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict, c, True)
                     return
         else:
-            erster_stich_spieler.stich = erster_stich_spieler.spielt_karte(schlag, farbe, self.stiche_bisher)
+            erster_stich_spieler.stich = erster_stich_spieler.spielt_karte(schlag, farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
             self.zuerst_gespieler_farbe = erster_stich_spieler.stich.farbe
-            self.Gegner(erster_stich_spieler).stich = self.Gegner(erster_stich_spieler).spielt_karte(schlag, farbe, self.stiche_bisher, self.Spielerliste[self.Geber ^ 1].stich)
+            self.Gegner(erster_stich_spieler).stich = self.Gegner(erster_stich_spieler).spielt_karte(schlag, farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict, self.Spielerliste[self.Geber ^ 1].stich)
 
     def Gegner(self, Spieler):
         return self.Spielerliste[self.Spielerliste.index(Spieler) ^ 1]
@@ -213,15 +231,23 @@ class Watten_Zwei_Spieler():
             Spieler.karten_wegschmeißen()
             Spieler.gewonnene_Stiche = 0
             Spieler.darf_ausschaffen = True
+            Spieler.hat_beim_abheben_geflunkert = False
         self.Deck.reset()
         self.Deck.an_spieler_austeilen(self.Spielerliste)
         self.schlag = None
         self.farbe = None
-        self.punkte_für_stich = 2
+        self.zuerst_gespielte_farbe = 'Farblos'
+        self.erste_karte_wurde_abgehoben = False
+        self.spieler_ausschaffen_dict = {Spieler: [] for Spieler in self.Spielerliste}
+        if any(Spieler.ist_gespannt for Spieler in self.Spielerliste):
+            self.punkte_für_stich = 3
+        else:
+            self.punkte_für_stich = 2
         self.stiche_bisher = {Spieler:[] for Spieler in self.Spielerliste}
+        self.hat_beim_abheben_geflunkert = False
 
     def punkte_vergleichen(self, Spielerliste):
-        Punkte = {Spieler: self.Punkteliste[Spieler.stich.wert] + self.ist_maxl(Spieler.stich) + self.ist_welli(Spieler.stich) + self.ist_spitz(Spieler.stich) + self.ist_schlag(Spieler.stich) + self.ist_farbe(Spieler.stich) + self.ist_erste_farbe(Spieler.stich) for Spieler in Spielerliste}
+        Punkte = {Spieler: self.Punkteliste[Spieler.stich.wert] + self.ist_maxl(Spieler.stich) + self.ist_belli(Spieler.stich) + self.ist_soacher(Spieler.stich) + self.ist_schlag(Spieler.stich) + self.ist_farbe(Spieler.stich) + self.ist_erste_farbe(Spieler.stich) for Spieler in Spielerliste}
         return max(Punkte, key=Punkte.get)
     
     def karten_vermerken(self, Spielerliste):
