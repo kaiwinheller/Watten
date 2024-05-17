@@ -4,7 +4,7 @@ Dieses GitHub-Repository beinhaltet alle zum Beschreiten des Endprojektes benöt
 
 <h2>Regeln</h2>
 
-Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Regeln und Spielabläufe definiert, die für das Endprojekt gelten.
+Da kein klares Regelwerk für das Spiel existiert, werden hier alle relevanten Regeln und Spielabläufe definiert, die für das Endprojekt gelten.
 <ul>
     <li>Es wird 1 gegen 1 gespielt</li>
     <li>Es gewinnt, wer als erstes insgesamt mindestens 15 Punkte erreicht hat</li>
