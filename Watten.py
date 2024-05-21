@@ -50,14 +50,12 @@ class Watten_Zwei_Spieler():
         Runde = 1
         while not any(Spieler.gewonnen() for Spieler in self.Spielerliste):
              
-            print(f'Punktestand: {self.Spielerliste[0].Punktestand} - {self.Spielerliste[1].Punktestand}, Runde: {Runde} \n\n')
             # Eine Runde spielen
             rundengewinner, punkte = self.eine_runde_spielen()
 
             # Punktestand des Spielers erhöhen
             rundengewinner.erhält_punkte(punkte)
             Runde += 1
-            print(f'Rundengewinner: {rundengewinner} erhält {punkte} Punkte\n\n')
             if rundengewinner.Punktestand >= 13:
                 rundengewinner.ist_gespannt = True
 
@@ -66,7 +64,7 @@ class Watten_Zwei_Spieler():
 
         # Endspielstand anzeigen
         gewinner = max(self.Spielerliste, key=lambda Spieler: Spieler.Punktestand)
-        print(f'{gewinner} hat gewonnen!')
+        return gewinner
 
     # Eine Runde spielen
 
@@ -94,7 +92,6 @@ class Watten_Zwei_Spieler():
         self.schlag = self.Spielerliste[self.Geber ^ 1].wählt_schlag(self.erste_karte_wurde_abgehoben)
         self.farbe = self.Spielerliste[self.Geber].wählt_farbe(self.erste_karte_wurde_abgehoben)
         erster_stich_spieler = self.Spielerliste[self.Geber ^ 1]
-        print(f'schlag: {self.schlag}, farbe: {self.farbe}')
 
         # Um schönere bitten
         if all(Spieler.um_schönere_bitten(self.erste_karte_wurde_abgehoben) for Spieler in self.Spielerliste):
@@ -181,12 +178,10 @@ class Watten_Zwei_Spieler():
                 elif Nehmer.ist_gespannt:
                     pass
                 elif self.Gegner(Geber).mitgehen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict):
-                    print(f'{Geber.name} schafft aus und {self.Gegner(Geber).name} geht mit')
                     Geber.darf_ausschaffen = False
                     self.Gegner(Geber).darf_ausschaffen = True
                     self.punkte_für_stich += 1
                 else:
-                    print(f'{Geber.name} schafft aus und {self.Gegner(Geber).name} geht nicht mit')
                     pf = self.punkte_für_stich
                     self.hard_reset()
                     return Spieler, self.punkte_für_stich
@@ -198,12 +193,10 @@ class Watten_Zwei_Spieler():
                 elif Geber.ist_gespannt:
                     pass
                 elif self.Gegner(Nehmer).mitgehen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict):
-                    print(f'{Nehmer.name} schafft aus und {self.Gegner(Nehmer).name} geht mit')
                     Nehmer.darf_ausschaffen = False
                     self.Gegner(Nehmer).darf_ausschaffen = True
                     self.punkte_für_stich += 1
                 else:
-                    print(f'{Nehmer.name} schafft aus und {self.Gegner(Nehmer).name} geht nicht mit')
                     pf = self.punkte_für_stich
                     self.hard_reset()
                     return Nehmer, self.punkte_für_stich

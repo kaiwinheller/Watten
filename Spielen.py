@@ -7,4 +7,6 @@ if __name__ == '__main__':
     Spieler1 = Spieler.Spieler("Spieler 1")
     Spieler2 = Spieler.Spieler("Spieler 2")
     Spiel = Watten.Watten_Zwei_Spieler([Spieler1, Spieler2])
-    Spiel.game_loop()
+    gewinner = Spiel.game_loop()
+
+    print(gewinner.name)
