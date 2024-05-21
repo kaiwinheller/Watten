@@ -7,6 +7,7 @@ class Spieler():
         self.darf_ausschaffen = True
         self.ist_gespannt = False
         self.hat_beim_abheben_geflunkert = False
+        self.hat_bei_trumpf_oder_kritisch_geflunkert = False
 
     def karten_wegschmeißen(self):
         self.hand = []
@@ -41,7 +42,7 @@ class Spieler():
             return self.hand.pop()
         else:
             for karte in self.hand:
-                if karte.wert == schlag or karte.farbe == farbe:
+                if karte.wert == schlag or karte.farbe == farbe or (karte.wert == "7" and karte.farbe == "Eichel") or (karte.wert == "7" and karte.farbe == "Schelle") or (karte.wert == "K" and karte.farbe == "Herz":
                     return karte
             else:
                 return self.hand.pop()

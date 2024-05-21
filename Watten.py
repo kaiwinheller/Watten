@@ -121,7 +121,7 @@ class Watten_Zwei_Spieler():
             if Gewinner.gewonnene_Stiche == 3:
                 hat_angezeigt = self.Gegner(Gewinner).bluff_anzeigen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
                 if hat_angezeigt:
-                    if Gewinner.hat_beim_abheben_geflunkert:
+                    if Gewinner.hat_beim_abheben_geflunkert or Gewinner.hat_bei_trumpf_oder_kritisch_geflunkert:
                         return self.Gegner(Gewinner), 2
                     else:
                         return Gewinner, self.punkte_für_stich + 1
@@ -217,6 +217,9 @@ class Watten_Zwei_Spieler():
                     Spieler.stich = c
                     Spieler.hand.remove(c)
                     self.Gegner(Spieler).stich = self.Gegner(Spieler).spielt_karte(schlag, farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict, c, True)
+                    # Überprüfen, ob der Spieler beim Trumpf oder kritisch geflunkert hat
+                    if any(karte.wert == schlag or karte.farbe == farbe or (karte.wert == "7" and karte.farbe == "Eichel") or (karte.wert == "7" and karte.farbe == "Schelle") or (karte.wert == "K" and karte.farbe == "Herz") for karte in self.Gegner(Spieler).hand):
+                        self.Gegner(Spieler).hat_bei_trumpf_oder_kritisch_geflunkert = True
                     return
         else:
             erster_stich_spieler.stich = erster_stich_spieler.spielt_karte(schlag, farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
@@ -232,6 +235,7 @@ class Watten_Zwei_Spieler():
             Spieler.gewonnene_Stiche = 0
             Spieler.darf_ausschaffen = True
             Spieler.hat_beim_abheben_geflunkert = False
+            Spieler.hat_bei_trumpf_oder_kritisch_geflunkert = False
         self.Deck.reset()
         self.Deck.an_spieler_austeilen(self.Spielerliste)
         self.schlag = None
