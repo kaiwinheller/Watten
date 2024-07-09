@@ -184,7 +184,7 @@ class Watten_Zwei_Spieler():
                 else:
                     pf = self.punkte_für_stich
                     self.hard_reset()
-                    return Spieler, self.punkte_für_stich
+                    return Geber, self.punkte_für_stich
         if Nehmer.darf_ausschaffen:
             schafft_aus = Nehmer.ausschaffen(self.schlag, self.farbe, self.stiche_bisher, self.erste_karte_wurde_abgehoben, self.spieler_ausschaffen_dict)
             if schafft_aus:
