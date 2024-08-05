@@ -71,3 +71,14 @@ Die jeweiligen Input-Parameter der Funktionen entnehmen Sie der Spieler.py-Datei
 
 <h2>Jupyter Notebook</h2>
 Um ein User-Interface für das Spiel im Jupyter Notebook zu basteln, sind die Restriktionen über Veränderung der anderen Klassen aufgehoben. Falls Ihnen das hilft, können Sie nun auch die anderen Klassen verändern und Code hinzufügen.
+
+<h2>Aufgaben für das Endprojekt</h2>
+Um noch einen Überblick über die von uns erwarteten Mindestkriterien zu geben, ist hier eine Liste.
+<ol>
+    <li> Benutzen Sie das Spieler-Template, um einen Spieler zu erzeugen, der die vorgefertigte KI in mehr als 51% der Fälle besiegt. Seien Sie kreativ und versuchen Sie Ihre Siegesrate zu maximieren. Wenn Sie eine KI erstellt haben, lassen Sie Ihre KI am besten mal gegen diese antreten, um weitere Verbesserungsmöglichkeiten zu finden. Sie spielen am Präsentationstag nicht gegen die einfache KI, sondern gegen die KIs der anderen Kursteilnehmer/innen.
+    </li>
+    <li>
+        Erstellen Sie ein Jupyter Notebook, in dem das Spiel Watten gespielt werden kann. Ziel ist es, durch befehle Live ein Spiel gegen einen KI-Gegner führen zu können. Dafür dürfen Sie wie im Vorkapitel beschrieben den Code verändern.
+    </li>
+</ol>
+Wenn Sie diese beiden Punkte erfüllen, haben Sie die Mindestanforderungen an das Bestehen des Endprojektes erfüllt Um Ihre Note aufzubessern, sollten Sie versuchen in mindestens einem der beiden Punkte über das Mindestmaß hinausgehen. Dies kann im Beispiel von 1. ein besonders komplexer Handlunsalgorithmus sein, den Sie konzipiert haben. Sie können aber (beispielsweise) auch eine schicke grafische Oberfläche zum Spielen im Jupyter Notebook bauen. Seien Sie kreativ.
