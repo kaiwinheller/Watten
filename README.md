@@ -29,7 +29,8 @@ Da kein klares Regelwerk für das Spiel existiert werden hier alle relevanten Re
     <li>Eichel 7 (soacher)</li>
     <li>Schlag und Trumpffarbe passend</li>
     <li>Schlag passend</li>
-    <li>Farbe passend</li>
+    <li>Trumpffarbe passend</li>
+    <li>Erstgelegte Farbe passend</li>
     <li>In aufsteigender Reihenfolge: "7", "8", "9", "10", "Unter", "Ober", "König" oder "Sau" falls sowohl Trumpffarbe als auch Schlag nicht passt und die Karte nicht zu den drei Kritischen gehört.</li>
 </ol>
 <ul>
