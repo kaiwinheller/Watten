@@ -58,7 +58,7 @@ class Spieler():
 
     def ausschaffen(self, schlag, farbe, stiche_bisher, nehmer_hat_karte_beim_abheben_genommen, hat_gesetzt_dict):
         # Es soll true ausgegeben werden, wenn Der Maxl auf der Hand ist
-        if any(karte.wert == "König" and karte.farbe == "Herz" for karte in self.hand):
+        if any(karte.wert == "König" and karte.farbe == "Herz" for karte in self.hand) and not self.ist_gespannt:
             return True
         else:
             return False
