@@ -43,7 +43,7 @@ class Spieler():
         else:
             for karte in self.hand:
                 if karte.wert == schlag or karte.farbe == farbe or (karte.wert == "7" and karte.farbe == "Eichel") or (karte.wert == "7" and karte.farbe == "Schelle") or (karte.wert == "K" and karte.farbe == "Herz"):
-                    return karte
+                    return self.hand.pop()
             else:
                 return self.hand.pop()
 
