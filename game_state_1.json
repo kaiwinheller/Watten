@@ -1,0 +1,42 @@
+{
+  "current_player_turn": "Human",
+  "game_over_message": null,
+  "game_phase": "AWAITING_TRUMP_CHOICE",
+  "geber_name": "Human",
+  "human_is_geber": true,
+  "last_played_card_opponent": "",
+  "last_played_card_player": "",
+  "message": "Phase: AWAITING_TRUMP_CHOICE. Turn: Human.",
+  "nehmer_name": "RandomBot (RandomBot)",
+  "opponent_card_count": 5,
+  "opponent_is_gespannt": false,
+  "opponent_name": "RandomBot (RandomBot)",
+  "opponent_score": 0,
+  "opponent_tricks_round": 0,
+  "player_hand": [
+    "8 Schelle",
+    "9 Schelle",
+    "K\u00f6nig Schelle",
+    "8 Herz",
+    "K\u00f6nig Laub"
+  ],
+  "player_is_gespannt": false,
+  "player_score": 0,
+  "player_tricks_round": 0,
+  "possible_actions": [
+    {
+      "options": [
+        "Herz",
+        "Schelle",
+        "Eichel",
+        "Laub"
+      ],
+      "type": "CHOOSE_TRUMP"
+    }
+  ],
+  "round_points_value": 2,
+  "schlag": "U",
+  "stiche_bisher_opponent": [],
+  "stiche_bisher_player": [],
+  "trump_suit": null
+}

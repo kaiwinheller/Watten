@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watten Game</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Watten Game</h1>
+    <div id="game-controls">
+        <label for="bot-select">Choose your opponent:</label>
+        <select id="bot-select">
+            <option value="basic">Basic Bot</option>
+            <option value="random" selected>Random Bot</option>
+            <!-- Add other bot types here in the future -->
+        </select>
+        <button id="new-game-btn">New Game</button>
+    </div>
+
+    <div id="game-messages-area">
+        <p id="game-message">Welcome! Click "New Game" to start.</p>
+        <p id="game-over-message" class="game-over"></p>
+        <p>Round Points Value: <span id="round-points-value">N/A</span></p>
+        <p>Geber: <span id="geber-name">N/A</span> | Nehmer: <span id="nehmer-name">N/A</span></p>
+        <p>Trump Suit: <span id="current-trump-suit">N/A</span> | Schlag: <span id="current-schlag">N/A</span></p>
+        <p>Current Turn: <span id="current-player-turn">N/A</span></p>
+        <p>Game Phase: <span id="game-phase">N/A</span></p>
+    </div>
+
+    <div id="game-area">
+        <div id="opponent-info" class="player-box">
+            <h2>Opponent (<span id="opponent-role">Bot</span>)</h2>
+            <p>Score: <span id="opponent-score">0</span></p>
+            <p>Tricks (Round): <span id="opponent-tricks-round">0</span></p>
+            <p>Cards: <span id="opponent-card-count">0</span></p>
+            <p>Gespannt: <span id="opponent-is-gespannt">No</span></p>
+            <div class="stich-area">Played: <span id="opponent-played-card"></span></div>
+            <div class="stiche-history">Previous Tricks: <span id="opponent-stiche-history"></span></div>
+        </div>
+
+        <div id="player-info" class="player-box">
+            <h2>You (<span id="player-role">Human</span>)</h2>
+            <p>Score: <span id="player-score">0</span></p>
+            <p>Tricks (Round): <span id="player-tricks-round">0</span></p>
+            <p>Gespannt: <span id="player-is-gespannt">No</span></p>
+            <div id="player-hand" class="card-container"></div>
+            <div class="stich-area">Played: <span id="player-played-card"></span></div>
+            <div class="stiche-history">Previous Tricks: <span id="player-stiche-history"></span></div>
+        </div>
+    </div>
+
+    <div id="action-controls">
+        <h3>Actions</h3>
+        <div id="choices-area"></div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

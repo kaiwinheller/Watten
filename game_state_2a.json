@@ -1,0 +1,49 @@
+{
+  "message": "Abheben decision processed: Did not take card.",
+  "new_state": {
+    "current_player_turn": "Human",
+    "game_over_message": null,
+    "game_phase": "AWAITING_SCHLAG_CHOICE",
+    "geber_name": "RandomBot (RandomBot)",
+    "human_is_geber": false,
+    "last_played_card_opponent": "",
+    "last_played_card_player": "",
+    "message": "Phase: AWAITING_SCHLAG_CHOICE. Turn: Human.",
+    "nehmer_name": "Human",
+    "opponent_card_count": 5,
+    "opponent_is_gespannt": false,
+    "opponent_name": "RandomBot (RandomBot)",
+    "opponent_score": 0,
+    "opponent_tricks_round": 0,
+    "player_hand": [
+      "Ober Herz",
+      "8 Schelle",
+      "K\u00f6nig Eichel",
+      "Unter Herz",
+      "9 Herz"
+    ],
+    "player_is_gespannt": false,
+    "player_score": 0,
+    "player_tricks_round": 0,
+    "possible_actions": [
+      {
+        "options": [
+          "7",
+          "8",
+          "9",
+          "10",
+          "Unter",
+          "Ober",
+          "K\u00f6nig",
+          "Sau"
+        ],
+        "type": "CHOOSE_SCHLAG"
+      }
+    ],
+    "round_points_value": 2,
+    "schlag": null,
+    "stiche_bisher_opponent": [],
+    "stiche_bisher_player": [],
+    "trump_suit": null
+  }
+}

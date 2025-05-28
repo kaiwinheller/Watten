@@ -1,0 +1,33 @@
+{
+  "current_player_turn": "Human",
+  "game_over_message": null,
+  "game_phase": "AWAITING_ABHEBEN_DECISION",
+  "geber_name": "RandomBot (RandomBot)",
+  "human_is_geber": false,
+  "last_played_card_opponent": "",
+  "last_played_card_player": "",
+  "message": "Phase: AWAITING_ABHEBEN_DECISION. Turn: Human.",
+  "nehmer_name": "Human",
+  "opponent_card_count": 0,
+  "opponent_is_gespannt": false,
+  "opponent_name": "RandomBot (RandomBot)",
+  "opponent_score": 0,
+  "opponent_tricks_round": 0,
+  "player_hand": [],
+  "player_is_gespannt": false,
+  "player_score": 0,
+  "player_tricks_round": 0,
+  "possible_actions": [
+    {
+      "type": "ABHEBEN_JA"
+    },
+    {
+      "type": "ABHEBEN_NEIN"
+    }
+  ],
+  "round_points_value": 2,
+  "schlag": null,
+  "stiche_bisher_opponent": [],
+  "stiche_bisher_player": [],
+  "trump_suit": null
+}
