@@ -94,10 +94,11 @@ def get_game_state_json(current_game): # Accepts current_game instance
 
 
     is_human_geber = (current_game.get_geber() == human_player_instance)
-    
+    is_human_turn = current_game.current_player_on_turn == human_player_instance
+
     # Determine current player and game phase from Watten.py
     current_turn_player_name = current_game.current_player_on_turn.name if current_game.current_player_on_turn else "N/A"
-    game_phase_from_engine = current_game.current_phase 
+    game_phase_from_engine = current_game.current_phase
     
     # Build possible_actions based on current_game state
     possible_actions = []
@@ -126,6 +127,7 @@ def get_game_state_json(current_game): # Accepts current_game instance
         winner = max(current_game.Spielerliste, key=lambda s: s.Punktestand)
         game_over_msg = f"GAME OVER! {winner.name} wins with {winner.Punktestand} points!"
         current_turn_player_name = "N/A" # No turns if game over
+        is_human_turn = False
 
     state = {
         "player_hand": [str(card) for card in human_player_instance.hand],
@@ -137,6 +139,8 @@ def get_game_state_json(current_game): # Accepts current_game instance
         "opponent_tricks_round": bot_player_instance.gewonnene_Stiche,
         "current_player_turn": current_turn_player_name,
         "human_is_geber": is_human_geber,
+        "is_human_turn": is_human_turn,
+        "human_player_name": human_player_instance.name,
         "geber_name": current_game.get_geber().name,
         "nehmer_name": current_game.get_nehmer().name,
         "schlag": current_game.schlag,
