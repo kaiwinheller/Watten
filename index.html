@@ -3,56 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watten Game</title>
+    <title>Watten Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Watten Game</h1>
-    <div id="game-controls">
-        <label for="bot-select">Choose your opponent:</label>
-        <select id="bot-select">
-            <option value="basic">Basic Bot</option>
-            <option value="random" selected>Random Bot</option>
-            <!-- Add other bot types here in the future -->
-        </select>
-        <button id="new-game-btn">New Game</button>
-    </div>
+    <div class="page-shell">
+        <header class="top-bar glass-card">
+            <div class="brand">
+                <span class="logo">Watten</span>
+                <span class="tagline">Bavarian Card Duel</span>
+            </div>
+            <div class="control-stack">
+                <label class="control-label" for="bot-select">Opponent</label>
+                <div class="control-row">
+                    <select id="bot-select" class="select-input">
+                        <option value="basic">Basic Bot</option>
+                        <option value="random" selected>Random Bot</option>
+                    </select>
+                    <button id="new-game-btn" class="primary-btn">Start Match</button>
+                </div>
+            </div>
+        </header>
 
-    <div id="game-messages-area">
-        <p id="game-message">Welcome! Click "New Game" to start.</p>
-        <p id="game-over-message" class="game-over"></p>
-        <p>Round Points Value: <span id="round-points-value">N/A</span></p>
-        <p>Geber: <span id="geber-name">N/A</span> | Nehmer: <span id="nehmer-name">N/A</span></p>
-        <p>Trump Suit: <span id="current-trump-suit">N/A</span> | Schlag: <span id="current-schlag">N/A</span></p>
-        <p>Current Turn: <span id="current-player-turn">N/A</span></p>
-        <p>Game Phase: <span id="game-phase">N/A</span></p>
-    </div>
+        <main class="layout-grid">
+            <section class="info-panel glass-card">
+                <div class="message-block">
+                    <p id="game-message" class="primary-message">Welcome! Choose an opponent and press "Start Match".</p>
+                    <p id="game-over-message" class="game-over"></p>
+                </div>
+                <div class="status-grid">
+                    <div class="status-chip">
+                        <span class="status-label">Phase</span>
+                        <span id="game-phase" class="status-value">–</span>
+                    </div>
+                    <div class="status-chip">
+                        <span class="status-label">Turn</span>
+                        <span id="current-player-turn" class="status-value">–</span>
+                        <span id="turn-indicator" class="turn-indicator">Waiting</span>
+                    </div>
+                    <div class="status-chip">
+                        <span class="status-label">Trump</span>
+                        <span id="current-trump-suit" class="status-value">–</span>
+                    </div>
+                    <div class="status-chip">
+                        <span class="status-label">Schlag</span>
+                        <span id="current-schlag" class="status-value">–</span>
+                    </div>
+                </div>
+            </section>
 
-    <div id="game-area">
-        <div id="opponent-info" class="player-box">
-            <h2>Opponent (<span id="opponent-role">Bot</span>)</h2>
-            <p>Score: <span id="opponent-score">0</span></p>
-            <p>Tricks (Round): <span id="opponent-tricks-round">0</span></p>
-            <p>Cards: <span id="opponent-card-count">0</span></p>
-            <p>Gespannt: <span id="opponent-is-gespannt">No</span></p>
-            <div class="stich-area">Played: <span id="opponent-played-card"></span></div>
-            <div class="stiche-history">Previous Tricks: <span id="opponent-stiche-history"></span></div>
-        </div>
+            <section class="table-panel glass-card">
+                <div class="player-zone opponent-zone" id="opponent-panel">
+                    <div class="zone-header">
+                        <div class="zone-title">
+                            <span id="opponent-name" class="player-name">Opponent</span>
+                            <span id="opponent-role" class="player-role">Bot</span>
+                        </div>
+                        <span id="opponent-is-gespannt" class="state-pill">Calm</span>
+                    </div>
+                    <div class="meter" id="opponent-score-meter" role="progressbar" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0">
+                        <div class="meter-fill"></div>
+                        <div class="meter-label"><span id="opponent-score">0</span> / 15 pts</div>
+                    </div>
+                    <div class="meta-line">
+                        <span>Tricks this round: <span id="opponent-tricks-round">0</span></span>
+                        <span>Cards in hand: <span id="opponent-card-count">0</span></span>
+                    </div>
+                    <div id="opponent-hand" class="hand-backs"></div>
+                    <div class="played-card">
+                        <span class="label">Last played</span>
+                        <span id="opponent-played-card" class="card-slot">–</span>
+                    </div>
+                    <div class="history">
+                        <span class="label">Previous stiche</span>
+                        <div id="opponent-stiche-history" class="history-content">–</div>
+                    </div>
+                </div>
 
-        <div id="player-info" class="player-box">
-            <h2>You (<span id="player-role">Human</span>)</h2>
-            <p>Score: <span id="player-score">0</span></p>
-            <p>Tricks (Round): <span id="player-tricks-round">0</span></p>
-            <p>Gespannt: <span id="player-is-gespannt">No</span></p>
-            <div id="player-hand" class="card-container"></div>
-            <div class="stich-area">Played: <span id="player-played-card"></span></div>
-            <div class="stiche-history">Previous Tricks: <span id="player-stiche-history"></span></div>
-        </div>
-    </div>
+                <div class="table-center">
+                    <div class="round-summary">
+                        <div class="round-item">
+                            <span class="label">Geber</span>
+                            <span id="geber-name" class="value">–</span>
+                        </div>
+                        <div class="round-item">
+                            <span class="label">Nehmer</span>
+                            <span id="nehmer-name" class="value">–</span>
+                        </div>
+                        <div class="round-item highlight">
+                            <span class="label">Round value</span>
+                            <span class="value"><span id="round-points-value">–</span> pts</span>
+                        </div>
+                    </div>
+                </div>
 
-    <div id="action-controls">
-        <h3>Actions</h3>
-        <div id="choices-area"></div>
+                <div class="player-zone human-zone" id="player-panel">
+                    <div class="zone-header">
+                        <div class="zone-title">
+                            <span id="player-name" class="player-name">You</span>
+                            <span id="player-role" class="player-role">Human</span>
+                        </div>
+                        <span id="player-is-gespannt" class="state-pill">Calm</span>
+                    </div>
+                    <div class="meter" id="player-score-meter" role="progressbar" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0">
+                        <div class="meter-fill"></div>
+                        <div class="meter-label"><span id="player-score">0</span> / 15 pts</div>
+                    </div>
+                    <div class="meta-line">
+                        <span>Tricks this round: <span id="player-tricks-round">0</span></span>
+                        <span>Cards in hand: <span id="player-card-count">0</span></span>
+                    </div>
+                    <div class="played-card">
+                        <span class="label">Last played</span>
+                        <span id="player-played-card" class="card-slot">–</span>
+                    </div>
+                    <div class="history">
+                        <span class="label">Previous stiche</span>
+                        <div id="player-stiche-history" class="history-content">–</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hand-panel glass-card">
+                <div class="panel-header">
+                    <h2>Your Hand</h2>
+                    <span class="hint">Tap a card to play when it's your turn.</span>
+                </div>
+                <div id="player-hand" class="hand-cards"></div>
+            </section>
+
+            <section class="actions-panel glass-card">
+                <div class="panel-header">
+                    <h2>Available Actions</h2>
+                    <span id="actions-hint" class="hint">Waiting for the match to start.</span>
+                </div>
+                <div id="choices-area" class="actions-grid"></div>
+            </section>
+
+            <section class="log-panel glass-card">
+                <div class="panel-header">
+                    <h2>Timeline</h2>
+                    <button id="clear-log-btn" class="ghost-btn" type="button">Clear</button>
+                </div>
+                <ul id="log-list" class="log-list"></ul>
+            </section>
+        </main>
     </div>
 
     <script src="/static/js/script.js"></script>

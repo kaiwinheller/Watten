@@ -46,7 +46,9 @@ class Watten_Deck():
     def abheben(self):
         '''
         Entfernt die oberste Karte vom Deck und gibt sie zurück'''
-        return random.choice(self.cards)
+        if not self.cards:
+            return None
+        return self.cards.pop()
 
     def karte_nach_unten_legen(self, karte):
         '''
